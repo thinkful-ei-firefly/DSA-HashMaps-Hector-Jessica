@@ -94,3 +94,26 @@ function checkPalindromes(string) {
 
 console.log(checkPalindromes('acecarr'));
 console.log(checkPalindromes('north'));
+
+function anagram(array) {
+  let hashMap = new Map();
+  for (let i = 0; i < array.length; i++) {
+    const sortedWord = array[i]
+      .split('')
+      .sort()
+      .join('');
+
+    if (!hashMap.has(sortedWord)) {
+      hashMap.set(sortedWord, [array[i]]);
+    } else {
+      hashMap.set(sortedWord, [...hashMap.get(sortedWord), array[i]]);
+    }
+  }
+  const returnArray = [];
+  for (let [key, value] of hashMap) {
+    returnArray.push(value);
+  }
+  return returnArray;
+}
+
+//console.log(anagram(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
