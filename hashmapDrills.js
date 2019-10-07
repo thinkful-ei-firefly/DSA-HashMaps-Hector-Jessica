@@ -41,8 +41,8 @@ const WhatDoesThisDo = function() {
   map2.set(str3, 20);
   map2.set(str4, 10);
 
-  console.log(map1.get(str1));
-  console.log(map2.get(str3));
+  //console.log(map1.get(str1));
+  //console.log(map2.get(str3));
 };
 //WhatDoesThisDo();
 
@@ -66,5 +66,31 @@ function removeDuplicates(string) {
   return result;
 }
 
-console.log(removeDuplicates('google'));
-console.log(removeDuplicates('google all that you can think of'));
+//console.log(removeDuplicates('google'));
+//console.log(removeDuplicates('google all that you can think of'));
+
+function checkPalindromes(string) {
+  let hashMap = new Map();
+  const maxOdds = string.length % 2;
+
+  for (let i = 0; i < string.length; i++) {
+    if (!hashMap.has(string[i])) {
+      hashMap.set(string[i], 1);
+    } else {
+      hashMap.set(string[i], hashMap.get(string[i]) + 1);
+    }
+  }
+  let odds = 0;
+  for (let [key, value] of hashMap) {
+    if (value % 2 === 1) {
+      odds++;
+    }
+    if (odds > maxOdds) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(checkPalindromes('acecarr'));
+console.log(checkPalindromes('north'));
